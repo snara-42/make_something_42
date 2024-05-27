@@ -1,7 +1,4 @@
 projects = {
-    "": {
-        "": "hdr",
-    },
     "libft": {
         "malloc": "stdlib.h",
         "free": "stdlib.h",
@@ -90,6 +87,7 @@ projects = {
 
         "mlx_init": "mlx.h",
     },
+
     "minitalk": {
         "write": "unistd.h",
         "signal": "signal.h",
@@ -127,6 +125,7 @@ projects = {
         "wait": "sys/wait.h",
         "waitpid": "sys/wait.h",
     },
+
     "minishell": {
         "readline": "readline.h",
         "rl_clear_history": "readline.h",
@@ -195,6 +194,7 @@ projects = {
         "tgoto": "term.h",
         "tputs": "term.h",
     },
+
     "cub3d": {
         "open": "fcntl.h",
         "close": "unistd.h",
@@ -237,6 +237,7 @@ projects = {
 
         "mlx_init": "mlx.h",
     },
+
     "webserv": {
         "execve": "unistd.h",
         "dup": "unistd.h",
