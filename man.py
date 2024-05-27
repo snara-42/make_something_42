@@ -1,7 +1,7 @@
 projects = {
-	"": {
-		"": "std",
-	},
+    "": {
+        "": "hdr",
+    },
     "libft": {
         "malloc": "stdlib.h",
         "free": "stdlib.h",
@@ -23,14 +23,14 @@ projects = {
         "va_end": "stdarg.h",
     },
 
-	"push_swap": {
+    "push_swap": {
         "read": "unistd.h",
         "write": "unistd.h",
         "malloc": "stdlib.h",
         "free": "stdlib.h",
         "exit": "stdlib.h",
-	},
-	"fract-ol": {
+    },
+    "fract-ol": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -49,8 +49,8 @@ projects = {
         "tan": "math.h",
 
         "mlx_init": "mlx.h",
-	},
-	"fdf": {
+    },
+    "fdf": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -69,8 +69,8 @@ projects = {
         "tan": "math.h",
 
         "mlx_init": "mlx.h",
-	},
-	"so-long": {
+    },
+    "so-long": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -89,24 +89,24 @@ projects = {
         "tan": "math.h",
 
         "mlx_init": "mlx.h",
-	},
-	"minitalk": {
+    },
+    "minitalk": {
         "write": "unistd.h",
         "signal": "signal.h",
         "sigemptyset": "signal.h",
         "sigaddset": "signal.h",
         "sigaction": "signal.h",
         "kill": "signal.h",
-		"getpid": "unistd.h",
+        "getpid": "unistd.h",
 
         "malloc": "stdlib.h",
         "free": "stdlib.h",
-		"pause": "unistd.h",
-		"sleep": "unistd.h",
-		"usleep": "unistd.h",
+        "pause": "unistd.h",
+        "sleep": "unistd.h",
+        "usleep": "unistd.h",
         "exit": "stdlib.h",
-	},
-	"pipex": {
+    },
+    "pipex": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -126,7 +126,7 @@ projects = {
         "unlink": "unistd.h",
         "wait": "sys/wait.h",
         "waitpid": "sys/wait.h",
-	},
+    },
     "minishell": {
         "readline": "readline.h",
         "rl_clear_history": "readline.h",
@@ -195,7 +195,7 @@ projects = {
         "tgoto": "curses.h term.h",
         "tputs": "curses.h term.h",
     },
-	"cub3d": {
+    "cub3d": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -215,8 +215,8 @@ projects = {
         "tan": "math.h",
 
         "mlx_init": "mlx.h",
-	},
-	"minirt": {
+    },
+    "minirt": {
         "open": "fcntl.h",
         "close": "unistd.h",
         "read": "unistd.h",
@@ -236,5 +236,94 @@ projects = {
         "tan": "math.h",
 
         "mlx_init": "mlx.h",
-	},
+    },
+    "webserv": {
+        "execve": "unistd.h",
+        "dup": "unistd.h",
+        "dup2": "unistd.h",
+        "pipe": "unistd.h",
+        "strerror": "string.h",
+        "gai_strerror": "sys/types.h sys/socket.h netdb.h",
+        "errno": "sys/errno.h",
+        "fork": "unistd.h",
+
+        "htons": "arpa/inet.h",
+        "htonl": "arpa/inet.h",
+        "ntohs": "arpa/inet.h",
+        "ntohl": "arpa/inet.h",
+
+        "select": "sys/select.h",
+        "FD_SET": "sys/select.h",
+        "poll": "poll.h",
+        "epoll": "sys/epoll.h",
+        "epoll_create": "sys/epoll.h",
+        "epoll_ctl": "sys/epoll.h",
+        "epoll_wait": "sys/epoll.h",
+        "kqueue": "sys/event.h",
+        "kevent": "sys/event.h",
+
+        "socket": "sys/socket.h",
+        "socketpair": "sys/socket.h",
+        "accept": "sys/socket.h",
+        "listen": "sys/socket.h",
+        "send": "sys/socket.h",
+        "recv": "sys/socket.h",
+
+        "chdir": "unistd.h",
+        "bind": "sys/socket.h",
+        "connect": "sys/socket.h",
+        "getaddrinfo": "sys/socket.h netdb.h",
+        "freeaddrinfo": "sys/socket.h netdb.h",
+        "setsockopt": "sys/socket.h",
+        "getsockname": "sys/socket.h",
+        "getprotobyname": "netdb.h",
+
+        "fcntl": "fcntl.h",
+        "close": "unistd.h",
+        "read": "unistd.h",
+        "write": "unistd.h",
+        "waitpid": "sys/wait.h",
+        "kill": "signal.h",
+        "signal": "signal.h",
+
+        "access": "unistd.h",
+        "stat": "sys/stat.h",
+        "open": "fcntl.h",
+        "opendir": "dirent.h",
+        "readdir": "dirent.h",
+        "closedir": "dirent.h",
+    },
+    "irc": {
+        "socket": "sys/socket.h",
+        "close": "unistd.h",
+
+        "setsockopt": "sys/socket.h",
+        "getsockname": "sys/socket.h",
+        "getprotobyname": "netdb.h",
+        "gethostbyname": "netdb.h",
+        "getaddrinfo": "sys/socket.h netdb.h",
+        "freeaddrinfo": "sys/socket.h netdb.h",
+
+        "bind": "sys/socket.h",
+        "connect": "sys/socket.h",
+        "listen": "sys/socket.h",
+        "accept": "sys/socket.h",
+
+        "htons": "arpa/inet.h",
+        "htonl": "arpa/inet.h",
+        "ntohs": "arpa/inet.h",
+        "ntohl": "arpa/inet.h",
+        "inet_addr": "arpa/inet.h.h",
+        "inet_ntoa": "arpa/inet.h.h",
+
+        "send": "sys/socket.h",
+        "recv": "sys/socket.h",
+        "signal": "signal.h",
+        "sigaction": "signal.h",
+
+        "lseek": "unistd.h",
+        "fstat": "sys/stat.h",
+        "fcntl": "fcntl.h",
+        "poll": "poll.h",
+    },
 }
