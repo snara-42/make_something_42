@@ -1,13 +1,17 @@
 import random
 import time
 import sys
+import subprocess
+
 
 try:
     from colorama import init, Fore, Style
     import pygame
 except ImportError:
-    print("Please install required modules: colorama, pygame")
-    sys.exit(1)
+    subprocess.call("pip install colorama pygame", shell=True)
+    from colorama import init, Fore, Style
+    import pygame
+
 
 init(autoreset=True)
 pygame.mixer.init()
