@@ -90,10 +90,10 @@ def main():
         "4": "learning"
     }
 
-    category = categories.get(choice, "career")
+    category = categories.get(choice, "learning")
 
     animated_drawing_effect()
-    show_progress_bar()
+    # show_progress_bar()
     # play_sound_effect()
     display_ascii_art()
 
