@@ -1,0 +1,5 @@
+*.o
+*~
+*pycache*
+.*
+!.gitignore
