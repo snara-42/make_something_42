@@ -2,6 +2,8 @@ import argparse
 import random
 from man import projects
 
+
+# does not save
 def add_function(function, header, subject):
     if subject in projects:
         projects[subject][function] = header
@@ -9,6 +11,7 @@ def add_function(function, header, subject):
     else:
         projects[subject] = {function: header}
         print(f"Added new subject {subject} with: {function} -> {header}")
+
 
 def view_functions(subject=None):
     if subject:
@@ -23,11 +26,13 @@ def view_functions(subject=None):
             for function, header in funcs.items():
                 print(f"{function} -> {header}")
 
+
 def list_subjects():
     subjects = list(projects.keys())
     for i, subject in enumerate(subjects):
         print(f"{i+1}. {subject}")
     return subjects
+
 
 def quiz(subject):
     if subject not in projects:
@@ -37,13 +42,14 @@ def quiz(subject):
     functions = list(projects[subject].keys())
     incorrect_answers = set(functions)  # Track functions that were answered incorrectly or not answered yet
 
+    print("(enter 'quit' to stop)")
     while incorrect_answers:
         random_function = random.choice(list(incorrect_answers))
-        user_input = input(f"Which header does '{random_function}' belong to? (enter 'quit' to stop) ")
+        user_input = input(f"Which header does '{random_function}' belong to? ").strip()
         if user_input.lower() == 'quit':
             print("Quiz ended.")
             break
-        elif user_input == projects[subject][random_function]:
+        elif projects[subject][random_function] in [user_input, user_input+".h"]:
             print("Correct!")
             incorrect_answers.remove(random_function)  # Remove correct answer from the set
         else:
@@ -52,17 +58,17 @@ def quiz(subject):
     if not incorrect_answers:
         print("You have answered all questions correctly for this subject!")
 
+
 def main():
     parser = argparse.ArgumentParser(description='CLI for memorizing library functions and headers.')
-    parser.add_argument('--add', nargs=3, metavar=('FUNCTION', 'HEADER', 'SUBJECT'), help='Add a function and its header to a subject')
-    parser.add_argument('--view', nargs='?', const=True, metavar='SUBJECT', help='View all functions and headers, optionally for a specific subject')
-    parser.add_argument('--quiz', nargs='?', const=True, metavar='SUBJECT', help='Quiz yourself on functions and headers for a specific subject')
+    parser.add_argument('--view', nargs='?', const=True, metavar='SUBJECT',
+                        help='View all functions and headers, optionally for a specific subject')
+    parser.add_argument('--quiz', nargs='?', const=True, metavar='SUBJECT',
+                        help='Quiz yourself on functions and headers for a specific subject')
 
     args = parser.parse_args()
 
-    if args.add:
-        add_function(args.add[0], args.add[1], args.add[2])
-    elif args.view:
+    if args.view:
         if args.view is True:
             view_functions()
         else:
