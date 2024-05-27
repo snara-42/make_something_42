@@ -1,20 +1,9 @@
 import random
 import time
-import sys
-import subprocess
 
+from colorama import Fore, Style
+import colorama
 
-try:
-    from colorama import init, Fore, Style
-    import pygame
-except ImportError:
-    subprocess.call("pip install colorama pygame", shell=True)
-    from colorama import init, Fore, Style
-    import pygame
-
-
-init(autoreset=True)
-pygame.mixer.init()
 
 def draw_fortune(category):
     fortunes = {
@@ -43,8 +32,8 @@ def draw_fortune(category):
             "Your curiosity will lead to an exciting discovery. 🔍"
         ]
     }
-    
     return random.choice(fortunes[category])
+
 
 def animated_drawing_effect():
     print("Drawing your fortune", end="")
@@ -53,6 +42,7 @@ def animated_drawing_effect():
         time.sleep(1)
     print("\n")
 
+
 def show_progress_bar(duration=3):
     print("Drawing progress: [", end="", flush=True)
     for _ in range(duration * 10):
@@ -60,9 +50,12 @@ def show_progress_bar(duration=3):
         time.sleep(0.1)
     print("]")
 
+
 def play_sound_effect():
+    import pygame
     pygame.mixer.music.load("ding.mp3")
     pygame.mixer.music.play()
+
 
 def display_ascii_art():
     art = """
@@ -81,13 +74,14 @@ def display_ascii_art():
     """
     print(Fore.CYAN + art)
 
+
 def main():
     print("Choose a category for your fortune:")
     print("1. Career")
     print("2. Code Quality")
     print("3. Teamwork")
     print("4. Learning")
-    
+
     choice = input("Enter the number of your choice: ")
     categories = {
         "1": "career",
@@ -95,16 +89,18 @@ def main():
         "3": "teamwork",
         "4": "learning"
     }
-    
+
     category = categories.get(choice, "career")
-    
+
     animated_drawing_effect()
     show_progress_bar()
-    play_sound_effect()
+    # play_sound_effect()
     display_ascii_art()
-    
+
     fortune = draw_fortune(category)
     print(Fore.GREEN + Style.BRIGHT + "Your developer fortune: " + fortune)
 
+
 if __name__ == "__main__":
+    colorama.init(autoreset=True)
     main()
