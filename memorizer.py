@@ -1,16 +1,16 @@
 import argparse
 import random
-from man import projects
+from quizdata import projects, writing_systems
 
 
 # does not save
-def add_function(function, header, subject):
-    if subject in projects:
-        projects[subject][function] = header
-        print(f"Added: {function} -> {header} to subject {subject}")
-    else:
-        projects[subject] = {function: header}
-        print(f"Added new subject {subject} with: {function} -> {header}")
+# def add_function(function, header, subject):
+#     if subject in projects:
+#         projects[subject][function] = header
+#         print(f"Added: {function} -> {header} to subject {subject}")
+#     else:
+#         projects[subject] = {function: header}
+#         print(f"Added new subject {subject} with: {function} -> {header}")
 
 
 def view_functions(subject=None):
@@ -28,24 +28,32 @@ def view_functions(subject=None):
 
 
 def list_subjects():
-    subjects = list(projects.keys())
+    subjects = list(projects.keys()) + list(writing_systems.keys())
     for i, subject in enumerate(subjects):
         print(f"{i+1}. {subject}")
     return subjects
 
 
-def quiz(subject):
-    if subject not in projects:
+def quiz(subject: str):
+    if subject in projects:
+        quiz_headerfile(subject)
+    elif subject in writing_systems:
+        quiz_characters(writing_systems[subject])
+    else:
         print(f"Subject {subject} not found.")
         return
 
+
+def quiz_headerfile(subject: str):
+    # Track functions that were answered incorrectly or not answered yet
     functions = list(projects[subject].keys())
-    incorrect_answers = set(functions)  # Track functions that were answered incorrectly or not answered yet
+    incorrect_answers = set(functions)
 
     print("(enter 'quit' to stop)")
     while incorrect_answers:
         random_function = random.choice(list(incorrect_answers))
-        user_input = input(f"Which header does '{random_function}' belong to? ").strip()
+        print(f"Which header does '{random_function}' belong to? ", end="")
+        user_input = input().strip()
         if user_input.lower() == 'quit':
             print("Quiz ended.")
             break
@@ -57,6 +65,27 @@ def quiz(subject):
 
     if not incorrect_answers:
         print("You have answered all questions correctly for this subject!")
+
+
+def quiz_characters(characters: dict):
+    incorrect_answers = set(characters.keys())
+
+    print("(enter 'quit' to stop)")
+    while incorrect_answers:
+        random_char = random.choice(list(incorrect_answers))
+        print(f"How do you pronounce [{random_char}] ? ", end="")
+        user_input = input().strip()
+        if user_input.lower() == 'quit':
+            print("Quiz ended.")
+            break
+        elif user_input in characters[random_char]:
+            print("Correct!")
+            incorrect_answers.remove(random_char)
+        else:
+            print(f"Close! The correct answer is {characters[random_char]}.")
+
+    if not incorrect_answers:
+        print("You have answered all questions correctly for this writing system!")
 
 
 def main():
@@ -79,14 +108,13 @@ def main():
             subjects = list_subjects()
             try:
                 choice = int(input("Enter the number of the subject: ")) - 1
-                if 0 <= choice < len(subjects):
-                    quiz(subjects[choice])
-                else:
-                    print("Invalid choice.")
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-        else:
-            quiz(args.quiz)
+                if not 0 <= choice < len(subjects):
+                    raise ValueError
+                args.quiz = subjects[choice]
+            except ValueError and IndexError:
+                print("Invalid input. Please enter a valid number.")
+                return
+        quiz(args.quiz)
     else:
         parser.print_help()
 
