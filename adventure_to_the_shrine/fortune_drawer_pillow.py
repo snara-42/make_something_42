@@ -1,6 +1,5 @@
 import random
 import time
-from PIL import Image
 
 def draw_fortune():
     fortunes = [
@@ -100,8 +99,16 @@ def main():
     # Display the corresponding image
     image_path = f"./images/{image_file}"  # Ensure the images are in an 'images' directory
     try:
+        import subprocess
+        subprocess.run(["imgcat", image_path])
+        return
+    except Exception as e:
+        print(e)
+    try:
+        from PIL import Image
         with Image.open(image_path) as img:
             img.show()
+        return
     except FileNotFoundError:
         print(f"Image {image_path} not found.")
 
