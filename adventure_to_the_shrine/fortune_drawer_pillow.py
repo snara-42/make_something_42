@@ -90,14 +90,9 @@ def animated_drawing_effect():
         time.sleep(1)
     print("\n")
 
-def main():
-    animated_drawing_effect()
-    fortune, image_file, description = draw_fortune()
-    print(f"Your developer fortune: {fortune}")
-    print(description)
-    
+
+def show_image(image_path):
     # Display the corresponding image
-    image_path = f"./images/{image_file}"  # Ensure the images are in an 'images' directory
     try:
         import subprocess
         subprocess.run(["imgcat", image_path])
@@ -111,6 +106,16 @@ def main():
         return
     except FileNotFoundError:
         print(f"Image {image_path} not found.")
+
+
+def main():
+    animated_drawing_effect()
+    fortune, image_file, description = draw_fortune()
+    image_path = f"./images/{image_file}"  # Ensure the images are in an 'images' directory
+    show_image(image_path)
+    print(f"Your developer fortune: {fortune}")
+    print(description)
+    
 
 if __name__ == "__main__":
     main()
