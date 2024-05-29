@@ -1,8 +1,8 @@
-import random
 import time
 from fortune_drawer import draw_fortune
 
-class LogLike:
+
+class Roguelike:
     def __init__(self):
         self.condition = None
         self.level = 0
@@ -93,6 +93,7 @@ You take a moment to make a small offering, bow, and clap your hands twice in pr
             except Exception as e:
                 print(e)
 
+
 if __name__ == "__main__":
-    loglike = LogLike()
-    loglike.play()
+    roguelike = Roguelike()
+    roguelike.play()
