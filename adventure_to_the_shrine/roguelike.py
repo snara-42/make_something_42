@@ -41,6 +41,21 @@ You take a moment to make a small offering, bow, and clap your hands twice in pr
                 ],
                 '4': ['Leave the shrine', "exit"],
             },
+            '2': {
+                '1': [
+                    'Bring the fortune slip home',
+                    """
+You decide to bring your fortune slip home.
+                    """
+                ],
+                '2': [
+                    'Tie the fortune slip on a tree',
+                    """
+You decide to tie your fortune slip on a thin branch of a tree.
+                    """
+                ],
+                '3': ['Leave the shrine', "exit"],
+            },
         }
 
     def animated_drawing_effect(self):
@@ -55,7 +70,7 @@ You take a moment to make a small offering, bow, and clap your hands twice in pr
         for key, value in condition.items():
             print(f"{key}. {value[0]}")
 
-    def handle_input(self, user_input):
+    def handle_input(self, user_input) -> bool:
         condition = self.program_condition[str(self.level)]
         if user_input not in condition:
             print("Invalid input, please try again.")
@@ -79,19 +94,28 @@ You take a moment to make a small offering, bow, and clap your hands twice in pr
                 print('========================================')
                 print(data)
                 print('========================================')
+                self.level = 2
+
+        elif self.level == 2:
+            self.previous_select = user_input
+            print(condition[user_input][1])
+            if user_input == str(len(condition)):
+                return True
+            self.level = 1
             return False
 
-        return False
+        else:
+            return False
 
     def play(self):
         while True:
             try:
-                if self.previous_select:
-                    pass  # Previously selected option's output is already handled in handle_input
+                # if self.previous_select:
+                #     pass  # Previously selected option's output is already handled in handle_input
 
                 self.display_menu()
                 user_input = input('Enter choice: ')
-                if self.handle_input(user_input):
+                if self.handle_input(user_input) is True:
                     break
 
             except Exception as e:
