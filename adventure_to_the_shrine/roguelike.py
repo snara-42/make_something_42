@@ -61,21 +61,25 @@ You take a moment to make a small offering, bow, and clap your hands twice in pr
             print("Invalid input, please try again.")
             return False
 
-        if self.level == 0 and user_input in ['1', '2']:
+        elif self.level == 0:
             print(condition[user_input][1])  # Print introductory text
+            if user_input == str(len(condition)):
+                return True
             self.level = 1
+            return False
+
         elif self.level == 1:
             self.previous_select = user_input
-            if user_input == '4':
-                return True
-
             print(condition[user_input][1])
+            if user_input == str(len(condition)):
+                return True
             if user_input == '3':
                 self.animated_drawing_effect()
                 data = draw_fortune()
                 print('========================================')
                 print(data)
                 print('========================================')
+            return False
 
         return False
 
