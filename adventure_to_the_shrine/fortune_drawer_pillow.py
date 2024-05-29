@@ -95,8 +95,9 @@ def show_image(image_path):
     # Display the corresponding image
     try:
         import subprocess
-        subprocess.run(["imgcat", image_path])
-        return
+        ret = subprocess.run(["imgcat", image_path])
+        if ret.returncode == 0:
+            return
     except Exception as e:
         print(e)
     try:
